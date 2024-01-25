@@ -1,0 +1,33 @@
+<label>Input Text:</label><input #inputTemplate><br><br>
+<button (click)="onClickButton(inputTemplate.value)">Display Input Text Below</button>
+<p>The text input above is: {{inputText}}</p>
+<br>
+<br>
+<button #btn [disabled]="true">Button disabled via attribute? {{btn.disabled}}</button>
+<br>
+<br>
+<app-child #child="app-child"></app-child>
+<p>{{child.childValue}}</p>
+<ng-template #tmp1 [ngIf]="true">
+    <div>
+        <p>Ng-Template data here</p>
+    </div>
+</ng-template>
+<button (click)="log(tmp1)">Log ng-template</button><br><br>
+<label>Input Text:</label><input #inputTemplate2>
+<ng-template [ngIf]="true">
+    <br><button (click)="onButtonClick(inputTemplate2.value)">Button Inside ng-template</button>
+    <p>{{inputText2}}</p>
+</ng-template>
+<div>
+    <ng-template [ngIf]="true">
+        <p #ref>data Inside ng-template</p>
+    </ng-template>
+    <!-- The template variable #ref cannot be referenced outside of the ng-template
+    <p [innerHTML]="ref.innerHTML"></p> 
+    -->
+</div>
+<ng-container *ngFor="let i of [1,2]">
+    <!--You can't reference #ref2 because we don't know which input ref2 is referring to-->
+    <input #ref2 type="text" [value]="i" />
+</ng-container>
